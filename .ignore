@@ -1,0 +1,22 @@
+# Eclipse 系統與工作區暫存 (極為臃腫且嚴禁 AI 碰觸)
+**/.metadata/
+**/.recommenders/
+**/RemoteSystemsTempFiles/
+**/.settings/
+**/*.project
+**/*.classpath
+
+# Java 編譯輸出與快取 (防止載入過時的 .class 檔或大量 gradle 快取)
+**/bin/
+**/build/
+**/.gradle/
+
+# 前端的重度依賴與快取 (防止 Token 耗盡)
+**/node_modules/
+**/vendor/
+**/.nuxt/
+**/.output/
+
+# 說明：
+# 此處「不忽略」 ai_temp/ 與 ai_download/ 資料夾，
+# 以確保 Gemini CLI、Antigravity CLI 等工具能保有沙盒內暫存檔與下載檔案的完整檢索與讀寫視野。

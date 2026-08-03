@@ -60,6 +60,10 @@
 - **Eclipse 元數據隔離**：根目錄下的 `.metadata/` 目錄（包含其子目錄 `.plugins/`、`version.ini` 等）為 Eclipse 工作區的核心運行系統暫存。**AI 絕對不得讀取、修改、索引或搜尋其中的檔案**，避免破壞開發工具之穩定性。
 - **未列管目錄**：所有未列在「JAVA 專案」與「WEB 專案」之目錄（例如 `TDY_*`、`cicd/`、`mcp_jenkins/`、`apache_tw/`、`i18n/`、`RemoteSystemsTempFiles` 等），皆預設為**唯讀保護區**。未經使用者明確指示，AI 絕對不得修改、刪除或新增唯讀保護區內的任何程式碼、組態設定或檔案。
 - **Git 忽略規範**：嚴禁將 `.metadata/`、各 Java 專案產生的編譯輸出（如 `bin/`、`build/`）以及前端依賴庫（如 `node_modules/`）進行 Git 暫存或提交。
+- **非 Git 環境下全域忽略與 AI 沙盒規範 (`.ignore` 檔案)**：
+  - 由於本工作區非處於 Git 版本控制，為防止各 AI 工具（如 Gemini CLI、Antigravity CLI、Cursor、Claude Code 等）盲目掃描龐大且無效的暫存與編譯檔案而耗盡 Token，工作區根目錄已建立 **`.ignore`** 檔案。
+  - 各 AI 工具在啟動、建立全域索引或搜尋時，**必須自動讀取並嚴格遵守根目錄下的 `.ignore` 忽略配置**。
+  - ⚠️ **沙盒保留原則**：工作區內建的 **`ai_temp/`** 與 **`ai_download/`** 為 AI 專屬沙盒運作與下載目錄，**嚴禁將此兩目錄列入 `.ignore` 忽略清單**。這能確保 AI 代理人在下載、暫存與分析檔案時，能保有 100% 完整的檔案檢索、讀寫與 `glob` 搜尋視野。
 
 ---
 
